@@ -1,6 +1,9 @@
 const express = require('express');
+const hbs = require('hbs');
 
+/* Set express */
 var app = express();
+app.set('view engine', 'hbs');
 
 app.use(express.static(__dirname + '/public'))
 
@@ -11,7 +14,12 @@ app.get('/', (req, res) => {
   })
 });
 
+/* example using template engine hanldebar js */
 app.get('/about', (req, res) => {
+  res.render('about.hbs');
+});
+
+app.get('/profile', (req, res) => {
   res.send({
     success: true,
     message: 'Showing your information..',
