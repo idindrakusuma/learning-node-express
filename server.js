@@ -1,6 +1,6 @@
-const express = require('express');
-const hbs = require('hbs');
-
+const express = require('express')
+const hbs = require('hbs')
+const fs = require('fs')
 /* Set express */
 var app = express();
 
@@ -8,6 +8,15 @@ hbs.registerPartials(__dirname + '/views/partials')
 app.set('view engine', 'hbs');
 /* set public directory for express */
 app.use(express.static(__dirname + '/public'))
+/* middleware */
+app.use((req, res, next) => {
+  let now = new Date().toString()
+  let log = `Loggin at ${now} with ${req.method} ${req.url}`
+
+  console.log(log)
+  fs.appendFileSync('server.log', log + '\n')
+  next();
+})
 
 /* Making helper HBS */
 hbs.registerHelper('currentYear', () => new Date().getFullYear())
@@ -28,6 +37,7 @@ app.get('/about', (req, res) => {
   res.render('about.hbs', {
     data: {
       title: 'About Indra Kusuma',
+      description: 'Indra adalah programmer!'
     }
   })
 });

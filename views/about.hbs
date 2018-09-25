@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ data.title }} - Hanldebars JS</title>
+    {{> header }}
 </head>
 <body>
-    <h1>{{ data.title }}</h1>
-    <p>Something Here</p>
-
-    {{> footer}}
+    <body>
+        <div class="flex-center position-ref full-height">
+            <div class="flex-box">
+                <div class="content">
+                    <div class="title m-b-md">
+                        {{ data.title }}
+                    </div>
+                    {{ data.description }}
+                </div>
+                <div class="content">
+                    {{> footer}}
+                </div>
+            </div>
+        </div>
+    </body>
 </body>
 </html>
